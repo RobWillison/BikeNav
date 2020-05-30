@@ -11,7 +11,7 @@ sensor = adafruit_lsm9ds0.LSM9DS0_I2C(i2c)
 
 def direction():
     mag_x, mag_y, mag_z = sensor.magnetic
-    heading = 180 * math.atan2(mag_y,mag_x)/M_PI;
+    heading = 180 * math.atan2(mag_y,mag_x)/math.pi;
 
     if(heading < 0):
       heading += 360;
