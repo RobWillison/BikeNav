@@ -22,10 +22,10 @@ class BikeNav:
         heading += 180;
 
         self.angles.append(heading)
-        self.angles = angles[-5:]
+        self.angles = self.angles[-5:]
 
     def setLight(self):
-        angle = sum(angles) / len(angles)
+        angle = sum(self.angles) / len(self.angles)
         pixel = round(angle / 33.0)
         self.pixels.fill((0,0,0))
         self.pixels[pixel] = (255,0,0)
