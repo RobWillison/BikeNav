@@ -13,7 +13,7 @@ def direction():
     mag_x, mag_y, mag_z = sensor.magnetic
     heading = 180 * atan2(mag_y,mag_x)/M_PI;
 
-    if(heading < 0)
+    if(heading < 0):
       heading += 360;
 
       return heading
