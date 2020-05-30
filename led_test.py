@@ -12,7 +12,7 @@ class BikeNav:
         i2c = busio.I2C(board.SCL, board.SDA)
         self.sensor = adafruit_lsm9ds0.LSM9DS0_I2C(i2c)
         self.pixels = neopixel.NeoPixel(board.D18, 12)
-        pixels.brightness = 0.3
+        self.pixels.brightness = 0.3
 
         self.angles = []
 
