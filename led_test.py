@@ -21,7 +21,8 @@ def direction():
     return heading
 
 def setLight(angle):
-    pixel = round(angle / 30.0)
+    print(angle)
+    pixel = round(angle / 33.0)
     pixels.fill((0,0,0))
     pixels[pixel] = (255,0,0)
 
