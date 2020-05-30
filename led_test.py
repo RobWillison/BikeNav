@@ -26,6 +26,7 @@ class BikeNav:
 
     def setLight(self):
         angle = sum(self.angles) / len(self.angles)
+        print(angle)
         pixel = round(angle / 33.0)
         self.pixels.fill((0,0,0))
         self.pixels[pixel] = (255,0,0)
