@@ -8,6 +8,8 @@ import math
 
 i2c = busio.I2C(board.SCL, board.SDA)
 sensor = adafruit_lsm9ds0.LSM9DS0_I2C(i2c)
+pixels = neopixel.NeoPixel(board.D18, 12)
+pixels.brightness = 0.3
 
 def direction():
     mag_x, mag_y, mag_z = sensor.magnetic
@@ -18,9 +20,10 @@ def direction():
 
     return heading
 
-
-pixels = neopixel.NeoPixel(board.D18, 12)
-pixels.brightness = 0.3
+def setLight(angle):
+    pixel = round(angle / 30.0)
+    pixels.fill((0,0,0))
+    pixels[pixel] = (255,0,0)
 
 def setPixel(i, r, g, b, brightness):
     i = i % 12
@@ -29,5 +32,5 @@ def setPixel(i, r, g, b, brightness):
 
 
 while True:
-    print(direction())
+    setLight(direction())
     sleep(0.1)
