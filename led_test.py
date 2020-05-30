@@ -23,6 +23,7 @@ def direction():
 def setLight(angle):
     print(angle)
     pixel = round(angle / 33.0)
+    print(pixel)
     pixels.fill((0,0,0))
     pixels[pixel] = (255,0,0)
 
