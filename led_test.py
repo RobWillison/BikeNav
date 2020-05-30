@@ -11,17 +11,19 @@ sensor = adafruit_lsm9ds0.LSM9DS0_I2C(i2c)
 pixels = neopixel.NeoPixel(board.D18, 12)
 pixels.brightness = 0.3
 
+angles = []
+
 def direction():
     mag_x, mag_y, mag_z = sensor.magnetic
     heading = 180 * math.atan2(mag_y,mag_x)/math.pi;
     heading += 180;
 
-    return heading
+    angles.append(heading)
+    angles = angles[-5:]
 
-def setLight(angle):
-    print(angle)
+def setLight():
+    angle = sum(angles) / len(angles)
     pixel = round(angle / 33.0)
-    print(pixel)
     pixels.fill((0,0,0))
     pixels[pixel] = (255,0,0)
 
@@ -32,5 +34,6 @@ def setPixel(i, r, g, b, brightness):
 
 
 while True:
-    setLight(direction())
+    direction()
+    setLight()
     sleep(0.1)
