@@ -16,7 +16,7 @@ def direction():
     if(heading < 0):
       heading += 360;
 
-      return heading
+    return heading
 
 
 pixels = neopixel.NeoPixel(board.D18, 12)
