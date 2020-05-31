@@ -28,7 +28,7 @@ class Navigatior:
 
     def populate_points(self):
         points = []
-        for track in gpx.tracks:
+        for track in self.gpx.tracks:
             for segment in track.segments:
                 for point in segment.points:
                     points.append(point)
