@@ -16,9 +16,9 @@ class GPS:
 
     def position(self):
         report = self.session.next()
-        if hasattr(report, 'lat') && hasattr(report, 'lon'):
+        if hasattr(report, 'lat') and hasattr(report, 'lon'):
             return [report['lat'], report['lon']]
-        
+
 
 class BikeNav:
 
