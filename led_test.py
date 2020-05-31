@@ -12,7 +12,7 @@ import gps
 class GPS:
     def __init__(self):
         self.session = gps.gps('localhost', '2947')
-        self.session.stream(gps.WATCH_ENABLED | gps.WATCH_NEWSTYLE)
+        self.session.stream(gps.WATCH_ENABLE | gps.WATCH_NEWSTYLE)
 
     def position(self):
         return self.session.next()
