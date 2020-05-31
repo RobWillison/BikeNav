@@ -19,37 +19,6 @@ class GPS:
         if hasattr(report, 'lat') and hasattr(report, 'lon'):
             return [report['lat'], report['lon']]
 
-
-class BikeNav:
-
-    def __init__(self):
-        i2c = busio.I2C(board.SCL, board.SDA)
-        self.sensor = adafruit_lsm9ds0.LSM9DS0_I2C(i2c)
-        self.pixels = neopixel.NeoPixel(board.D18, 12)
-        self.pixels.brightness = 0.3
-
-        self.angles = []
-
-    def direction(self):
-        mag_x, mag_y, mag_z = self.sensor.magnetic
-        heading = 180 * math.atan2(mag_y,mag_x)/math.pi;
-        heading += 180;
-
-        self.angles.append(heading)
-        self.angles = self.angles[-5:]
-
-    def setLight(self):
-        angle = sum(self.angles) / len(self.angles)
-        print(angle)
-        pixel = round(angle / 33.0)
-        self.pixels.fill((0,0,0))
-        self.pixels[pixel] = (255,0,0)
-
-    def setPixel(self, i, r, g, b, brightness):
-        i = i % 12
-        brightness = 255 * brightness
-        self.pixels[i] = (int(r*brightness), int(g*brightness), int(b*brightness))
-
 class Navigatior:
 
     def __init__(self):
@@ -66,10 +35,46 @@ class Navigatior:
 
         return points
 
-    def first_point(self):
+    def next_point(self):
         return self.points[0]
 
-nav = GPS()
+class BikeNav:
+
+    def __init__(self):
+        i2c = busio.I2C(board.SCL, board.SDA)
+        self.sensor = adafruit_lsm9ds0.LSM9DS0_I2C(i2c)
+        self.pixels = neopixel.NeoPixel(board.D18, 12)
+        self.pixels.brightness = 0.3
+        self.gps = GPS()
+        self.nav = Navigatior()
+
+        self.angles = []
+
+    def current_direction(self):
+        mag_x, mag_y, mag_z = self.sensor.magnetic
+        heading = 180 * math.atan2(mag_y,mag_x)/math.pi;
+        heading += 180;
+        return heading
+
+    def setLight(self, angle):
+        pixel = round(angle / 33.0)
+        self.pixels.fill((0,0,0))
+        self.pixels[pixel] = (255,0,0)
+
+    def setPixel(self, i, r, g, b, brightness):
+        i = i % 12
+        brightness = 255 * brightness
+        self.pixels[i] = (int(r*brightness), int(g*brightness), int(b*brightness))
+
+    def update_display(self):
+        current_point = self.gps.position()
+        if current_point == None:
+            return
+        target_point = self.nav.next_point()
+        angle = sphere.final_bearing(current_point, target_point)
+
+
+nav = BikeNav()
 while True:
-    print(nav.position())
+    print(nav.update_display())
     sleep(1)
