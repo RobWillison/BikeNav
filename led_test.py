@@ -70,7 +70,9 @@ class BikeNav:
         current_point = self.gps.position()
         if current_point == None:
             return
+        print(current_point)
         target_point = self.nav.next_point()
+        print(target_point)
         angle = sphere.final_bearing(current_point, target_point)
 
 
