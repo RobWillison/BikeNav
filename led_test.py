@@ -36,7 +36,7 @@ class Navigatior:
         return points
 
     def next_point(self):
-        return self.points[0]
+        return [self.points[0].latitude, self.points[0].longitude]
 
 class BikeNav:
 
