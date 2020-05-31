@@ -11,7 +11,7 @@ import gps
 
 class GPS:
     def __init__(self):
-        session = gps.gps('localhost', '2947')
+        self.session = gps.gps('localhost', '2947')
         self.session.stream(gps.WATCH_ENABLED | gps.WATCH_NEWSTYLE)
 
     def position(self):
