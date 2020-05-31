@@ -5,6 +5,17 @@ import board
 import busio
 import adafruit_lsm9ds0
 import math
+import gpxpy
+from geo import sphere
+import gps
+
+class GPS:
+    def __init__(self):
+        session = gps.gps('localhost', '2947')
+        self.session.stream(gps.WATCH_ENABLED | gps.WATCH_NEWSTYLE)
+
+    def position(self):
+        return self.session.next()
 
 class BikeNav:
 
@@ -36,7 +47,24 @@ class BikeNav:
         brightness = 255 * brightness
         self.pixels[i] = (int(r*brightness), int(g*brightness), int(b*brightness))
 
+class Navigatior:
 
+    def __init__(self):
+        gpx_file = open('test.gpx', 'r')
+        self.gpx = gpxpy.parse(gpx_file)
+        self.points = self.populate_points()
+
+    def populate_points(self):
+        points = []
+        for track in gpx.tracks:
+            for segment in track.segments:
+                for point in segment.points:
+                    points.append(point)
+
+        return points
+
+    def first_point(self):
+        return self.points[0]
 nav = BikeNav()
 while True:
     nav.direction()
