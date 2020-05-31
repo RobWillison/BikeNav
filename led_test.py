@@ -15,7 +15,10 @@ class GPS:
         self.session.stream(gps.WATCH_ENABLE | gps.WATCH_NEWSTYLE)
 
     def position(self):
-        return self.session.next()
+        report = self.session.next()
+        if hasattr(report, 'lat') && hasattr(report, 'lon'):
+            return [report['lat'], report['lon']]
+        
 
 class BikeNav:
 
