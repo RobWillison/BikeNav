@@ -65,8 +65,8 @@ class Navigatior:
 
     def first_point(self):
         return self.points[0]
-nav = BikeNav()
+
+nav = GPS()
 while True:
-    nav.direction()
-    nav.setLight()
-    sleep(0.1)
+    print(nav.position())
+    sleep(1)
