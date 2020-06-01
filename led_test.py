@@ -69,6 +69,7 @@ class BikeNav:
     def update_display(self):
         current_point = self.gps.position()
         if current_point == None:
+            self.pixels.fill((0,0,255))
             return
         print(current_point)
         target_point = self.nav.next_point()
