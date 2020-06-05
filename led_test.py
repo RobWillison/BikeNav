@@ -67,15 +67,16 @@ class BikeNav:
         self.pixels[i] = (int(r*brightness), int(g*brightness), int(b*brightness))
 
     def update_display(self):
-        current_point = self.gps.position()
-        if current_point == None:
-            self.pixels.fill((0,0,255))
-            return
-        print(current_point)
-        target_point = self.nav.next_point()
-        print(target_point)
-        angle = sphere.final_bearing(current_point, target_point)
-        print(angle)
+        # current_point = self.gps.position()
+        # if current_point == None:
+        #     self.pixels.fill((0,0,255))
+        #     return
+        # print(current_point)
+        # target_point = self.nav.next_point()
+        # print(target_point)
+        # angle = sphere.final_bearing(current_point, target_point)
+        # print(angle)
+        angle = self.current_direction()
         self.setLight(angle)
 
 nav = BikeNav()
