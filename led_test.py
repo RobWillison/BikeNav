@@ -52,7 +52,7 @@ class BikeNav:
 
     def current_direction(self):
         mag_x, mag_y, mag_z = self.sensor.magnetic
-        heading = 180 * math.atan2(mag_y,mag_x)/math.pi;
+        heading = 180 * math.atan2(mag_y,mag_z)/math.pi;
         heading += 180;
         return heading
 
