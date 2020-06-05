@@ -83,4 +83,3 @@ class BikeNav:
 nav = BikeNav()
 while True:
     nav.update_display()
-    sleep(1)
