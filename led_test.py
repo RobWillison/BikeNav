@@ -77,9 +77,10 @@ class BikeNav:
         # angle = sphere.final_bearing(current_point, target_point)
         # print(angle)
         angle = self.current_direction()
+        print(angle)
         self.setLight(angle)
 
 nav = BikeNav()
 while True:
-    print(nav.update_display())
+    nav.update_display()
     sleep(1)
