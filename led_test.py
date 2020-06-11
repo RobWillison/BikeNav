@@ -52,6 +52,7 @@ class BikeNav:
 
     def current_direction(self):
         mag_x, mag_y, mag_z = self.sensor.magnetic
+        print(mag_x, mag_y, mag_z)
         heading = math.degrees(math.atan2(mag_z,mag_y));
         heading += 180;
         return heading
