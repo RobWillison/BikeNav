@@ -67,7 +67,7 @@ class BikeNav:
 
         return heading
 
-    def compass_heading():
+    def compass_heading(self):
         data = []
         for i in range(10):
             sleep(0.01)
