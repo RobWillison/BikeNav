@@ -62,7 +62,7 @@ class BikeNav:
         if -1000 > mag_z < 1000:
             return
 
-        heading = math.degrees(math.atan2(mag_x,mag_z));
+        heading = math.degrees(math.atan2(mag_x,mag_y));
         heading += 180;
         return heading
 
