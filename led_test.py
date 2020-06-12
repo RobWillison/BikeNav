@@ -89,7 +89,7 @@ class BikeNav:
         # print(angle)
         angle = self.current_direction()
         # print(angle)
-        self.setLight(angle)
+        # self.setLight(angle)
 
 nav = BikeNav()
 while True:
