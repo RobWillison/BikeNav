@@ -64,8 +64,18 @@ class BikeNav:
 
         heading = math.degrees(math.atan2(mag_x,mag_y));
         heading += 180;
-        print(heading)
+
         return heading
+
+    def compass_heading():
+        data = []
+        for i in range(10):
+            sleep(0.01)
+            new_data = self.current_direction()
+            if new_data():
+                data.append(new_data)
+
+        return sum(data) / len(data)
 
     def setLight(self, angle):
         pixel = round(angle / 33.0)
@@ -78,6 +88,7 @@ class BikeNav:
         self.pixels[i] = (int(r*brightness), int(g*brightness), int(b*brightness))
 
     def update_display(self):
+
         # current_point = self.gps.position()
         # if current_point == None:
         #     self.pixels.fill((0,0,255))
@@ -87,11 +98,11 @@ class BikeNav:
         # print(target_point)
         # angle = sphere.final_bearing(current_point, target_point)
         # print(angle)
-        angle = self.current_direction()
-        # print(angle)
-        # self.setLight(angle)
+        angle = self.compass_heading()
+        print(angle)
+        self.setLight(angle)
 
 nav = BikeNav()
 while True:
     nav.update_display()
-    sleep(0.0)
+    sleep(0.1)
