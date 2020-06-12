@@ -78,7 +78,7 @@ class BikeNav:
         return sum(data) / len(data)
 
     def setLight(self, angle):
-        pixel = round(angle / 30.0)
+        pixel = math.floor(angle / 30.0)
         self.pixels.fill((0,0,0))
         self.pixels[pixel] = (0,125,0)
 
