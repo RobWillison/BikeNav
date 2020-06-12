@@ -72,13 +72,13 @@ class BikeNav:
         for i in range(10):
             sleep(0.01)
             new_data = self.current_direction()
-            if new_data:
+            if new_datag:
                 data.append(new_data)
 
         return sum(data) / len(data)
 
     def setLight(self, angle):
-        pixel = round(angle / 33.0)
+        pixel = round(angle / 30.0)
         self.pixels.fill((0,0,0))
         self.pixels[pixel] = (0,125,0)
 
