@@ -72,7 +72,7 @@ class BikeNav:
         for i in range(10):
             sleep(0.01)
             new_data = self.current_direction()
-            if new_datag:
+            if new_data:
                 data.append(new_data)
 
         return sum(data) / len(data)
