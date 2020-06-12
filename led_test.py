@@ -77,10 +77,18 @@ class BikeNav:
 
         return sum(data) / len(data)
 
-    def setLight(self, angle):
+    def setLight(self, angle, target_angle):
+        # error from 0 to 180
+        error = abs(target_angle - angle)
+        # Now from 1 to 10
+        error = int(error / 18.0)
+
+        red = 10 * error
+        green = 100 - red
+
         pixel = math.floor(angle / 30.0)
         self.pixels.fill((0,0,0))
-        self.pixels[pixel] = (0,125,0)
+        self.pixels[pixel] = (red,green,0)
 
     def setPixel(self, i, r, g, b, brightness):
         i = i % 12
@@ -100,7 +108,8 @@ class BikeNav:
         # print(angle)
         angle = self.compass_heading()
         print(angle)
-        self.setLight(angle)
+        target_angle = 0
+        self.setLight(angle, target_angle)
 
 nav = BikeNav()
 while True:
