@@ -82,7 +82,7 @@ class BikeNav:
         error = abs(target_angle - angle)
         # Now from 1 to 10
         error = int(error / 18.0)
-
+        print(error)
         red = 10 * error
         green = 100 - red
 
