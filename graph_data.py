@@ -26,12 +26,11 @@ filtered_y = []
 filtered_z = []
 
 for i in range(len(x_data)):
-    if -1000 < x_data[i] < 1000:
-        if -1000 < y_data[i] < 1000:
-            if -1000 < z_data[i] < 1000:
-                filtered_x.append(x_data[i])
-                filtered_y.append(y_data[i])
-                filtered_z.append(z_data[i])
+    if x_data[i] != y_data[i]:
+        if -10000 < x_data[i] < 10000:
+            filtered_x.append(x_data[i])
+            filtered_y.append(y_data[i])
+            filtered_z.append(z_data[i])
 plt.scatter(filtered_x, filtered_y);
 plt.scatter(filtered_x, filtered_z);
 plt.scatter(filtered_y, filtered_z);
