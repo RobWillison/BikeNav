@@ -52,16 +52,16 @@ class BikeNav:
 
     def current_direction(self):
         mag_x, mag_y, mag_z = self.sensor.read_mag_raw()
-        mag_x += 350.6
-        mag_y += 1327.9333722969025
-        mag_z -= 1223.7975842587182
-        if -1000 > mag_x < 1000:
-            return
-        if -1000 > mag_y < 1000:
-            return
-        if -1000 > mag_z < 1000:
-            return
-
+        # mag_x += 350.6
+        # mag_y += 1327.9333722969025
+        # mag_z -= 1223.7975842587182
+        # if -1000 > mag_x < 1000:
+        #     return
+        # if -1000 > mag_y < 1000:
+        #     return
+        # if -1000 > mag_z < 1000:
+        #     return
+        print(','.join([str(mag_x), str(mag_y), str(mag_z)]))
         heading = math.degrees(math.atan2(mag_x,mag_y));
         heading += 180;
 
@@ -99,8 +99,8 @@ class BikeNav:
         # angle = sphere.final_bearing(current_point, target_point)
         # print(angle)
         angle = self.compass_heading()
-        print(angle)
-        self.setLight(angle)
+        # print(angle)
+        # self.setLight(angle)
 
 nav = BikeNav()
 while True:
