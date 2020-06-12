@@ -64,6 +64,7 @@ class BikeNav:
 
         heading = math.degrees(math.atan2(mag_x,mag_y));
         heading += 180;
+        print(heading)
         return heading
 
     def setLight(self, angle):
